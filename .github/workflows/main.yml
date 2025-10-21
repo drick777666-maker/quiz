@@ -1,0 +1,44 @@
+name: Deploy Static Quiz to Pages
+
+on:
+  # Ativado quando há um push para o branch principal
+  push:
+    branches:
+      - main  # Use 'main' ou 'master', o nome do seu branch principal
+  # Permite execução manual na aba Actions
+  workflow_dispatch:
+
+# Define as permissões para o token GITHUB_TOKEN
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Permite apenas uma execução simultânea
+concurrency:
+  cancel-in-progress: true
+  group: pages
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          # A profundidade de fetch é importante para o GitHub Pages
+          fetch-depth: 0
+
+      - name: Setup GitHub Pages Environment
+        uses: actions/configure-pages@v4
+        
+      # Esta etapa copia todos os seus arquivos (HTML, CSS, JS) para o artefato de publicação
+      - name: Upload Artifacts (HTML, CSS, JS)
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # Define o diretório que contém os arquivos do seu site (a raiz do repositório)
+          path: './' 
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
