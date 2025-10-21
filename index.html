@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Interativo de Cultura Pop</title>
+    
+    <!-- style.css-->
+    <link rel="stylesheet" href="style.css"> 
+    
+    <!-- import bib-->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
+</head>
+<body>
+    
+    <!-- estrutura corrigida por STICKY FOOTER(com ia) -->
+    <div id="content-wrap">
+        
+        <div class="quiz-container">
+
+            <!-- tela de inicio -->
+            <div id="inicio-tela" class="tela ativa">
+                <h1>Bem-vindo ao Quiz!</h1>
+                <p>Por favor, digite seu nome para começar:</p>
+                <input type="text" id="nome-usuario" placeholder="Seu Nome" autofocus><br>
+                <button id="iniciar-quiz-btn">Iniciar Quiz</button>
+            </div>
+
+            <!-- tela de quiz -->
+            <div id="quiz-tela" class="tela">
+                <h2 id="titulo-questao"></h2> 
+                
+                <div id="alternativas-container" class="alternativas-grid"></div>
+                
+                <p id="feedback-erro" class="feedback-erro"></p> 
+
+                <!-- Botão de Próxima Questão, Centralizado -->
+                <div class="navigation-buttons">
+                    <button id="proxima-btn" disabled>Próxima Questão</button>
+                </div>
+            </div>
+
+            <!-- resultado -->
+            <div id="resultado-tela" class="tela">
+                <h1>Resultado do Quiz</h1>
+                <p>Nome: <span id="resultado-nome"></span></p>
+                <p>Acertos: <span id="resultado-acertos"></span></p>
+                <p>Erros: <span id="resultado-erros"></span></p>
+                <p>Aproveitamento: <span id="resultado-percentual"></span></p>
+                <h2 id="mensagem-desempenho"></h2>
+
+                <div class="grafico-container">
+                    <canvas id="grafico-desempenho"></canvas>
+                </div>
+
+                <div class="navigation-buttons">
+                    <button onclick="window.location.reload()">Refazer Quiz</button>
+                </div>
+            </div>
+            
+        </div>
+        
+    </div>
+    
+    <!-- rodape-->
+    <footer class="footer">
+        Todos os direitos reservados © 2025 André Ventura
+    </footer>
+
+    <!-- Link para o arquivo de script externo (melhorar desenpenho)-->
+    <script src="script.js"></script>
+</body>
+</html>
