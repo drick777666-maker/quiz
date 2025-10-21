@@ -32,13 +32,20 @@ jobs:
       - name: Setup GitHub Pages Environment
         uses: actions/configure-pages@v4
         
-      # Esta etapa copia todos os seus arquivos (HTML, CSS, JS) para o artefato de publicação
+      # ESTE PASSO FOI ATUALIZADO: Usando um nome de artefato específico
       - name: Upload Artifacts (HTML, CSS, JS)
         uses: actions/upload-pages-artifact@v3
         with:
           # Define o diretório que contém os arquivos do seu site (a raiz do repositório)
-          path: './' 
+          path: './'
+          # NOME DE ARTEFATO EXPLICITAMENTE DEFINIDO PARA EVITAR CONFLITOS
+          name: static-quiz-artifact 
 
+      # ESTE PASSO FOI ATUALIZADO: Referenciando o artefato específico
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+        with:
+          # Garante que o deploy use apenas o artefato que acabamos de criar
+          artifact_name: static-quiz-artifact 
+
